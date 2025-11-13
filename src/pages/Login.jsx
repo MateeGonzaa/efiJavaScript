@@ -1,76 +1,45 @@
-import React, { useState, useRef } from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../api/auth";
+import { AuthContext } from "../context/AuthContext";
+import { InputText } from "primereact/inputtext";
+import { Password } from "primereact/password";
+import { Button } from "primereact/button";
+import { Card } from "primereact/card";
+import { showError, showSuccess } from "../components/ToastProvider";
 
-// Componentes PrimeReact
-import { InputText } from 'primereact/inputtext';
-import { Password } from 'primereact/password';
-import { Button } from 'primereact/button';
-import { Card } from 'primereact/card';
-import { Toast } from 'primereact/toast';
-
-const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { loginUser } = useAuth(); // 1. Consumir el contexto
+export default function Login() {
+  const { register, handleSubmit } = useForm();
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const toast = useRef(null); // Para las alertas [cite: 35]
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     try {
-      // 2. Llamar a la función del contexto
-      await loginUser({ email, password });
-
-      // 3. Mostrar éxito y redirigir
-      toast.current.show({ 
-        severity: 'success', 
-        summary: 'Éxito', 
-        detail: 'Inicio de sesión correcto' 
-      });
-      
-      // Pequeña espera para que se vea el toast antes de redirigir
-      setTimeout(() => {
-        navigate('/posts'); // Redirigir al listado de posts
-      }, 1500);
-
-    } catch (error) {
-      // 4. Mostrar error (gracias al 'throw' en el contexto)
-      toast.current.show({ 
-        severity: 'error', 
-        summary: 'Error', 
-        detail: 'Email o contraseña incorrectos' 
-      });
+      const res = await loginUser(data);
+      login(res.access_token);
+      showSuccess("Inicio exitoso", "Bienvenido!");
+      navigate("/");
+    } catch {
+      showError("Error", "Credenciales incorrectas");
     }
   };
 
   return (
-    <div className="p-d-flex p-jc-center p-ai-center" style={{ minHeight: '80vh' }}>
-      <Toast ref={toast} /> {/* No olvidar el componente Toast */}
-      <Card title="Iniciar Sesión" style={{ width: '25rem' }}>
-        <form onSubmit={handleSubmit} className="p-fluid">
-          <div className="p-field">
+    <div className="flex justify-content-center align-items-center h-screen">
+      <Card title="Iniciar sesión" className="p-4 w-20rem">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column gap-3">
+          <span className="p-float-label">
+            <InputText id="email" {...register("email")} />
             <label htmlFor="email">Email</label>
-            <InputText 
-              id="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-            />
-          </div>
-          <div className="p-field">
+          </span>
+          <span className="p-float-label">
+            <Password id="password" {...register("password")} feedback={false} />
             <label htmlFor="password">Contraseña</label>
-            <Password 
-              id="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              feedback={false} 
-            />
-          </div>
-          <Button label="Login" type="submit" className="p-mt-2" />
+          </span>
+          <Button label="Ingresar" icon="pi pi-sign-in" />
         </form>
       </Card>
     </div>
   );
-};
-
-export default LoginPage;
+}
