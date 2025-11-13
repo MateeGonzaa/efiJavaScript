@@ -13,8 +13,7 @@ export const AuthProvider = ({ children }) => {
         const decoded = jwtDecode(token);
         setUser({ email: decoded.email, role: decoded.role });
         localStorage.setItem("token", token);
-      } catch (err) {
-        console.error("Token inválido:", err);
+      } catch {
         setUser(null);
         localStorage.removeItem("token");
       }
@@ -33,11 +32,10 @@ export const AuthProvider = ({ children }) => {
   const hasRole = (role) => user?.role === role;
 
   return (
-    <AuthContext.Provider
-      value={{ user, token, login, logout, isAuthenticated: !!user, hasRole }}
-    >
+    <AuthContext.Provider value={{ user, token, login, logout, isAuthenticated: !!user, hasRole }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
 

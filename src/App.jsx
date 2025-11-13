@@ -4,9 +4,11 @@ import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import ToastProvider from "./components/ToastProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PostsList from "./pages/PostsList";
+import PostDetail from "./pages/PostDetail";
 import PostForm from "./pages/PostForm";
 
 export default function App() {
@@ -16,9 +18,11 @@ export default function App() {
         <Navbar />
         <ToastProvider />
         <Routes>
-          <Route path="/" element={<PostsList />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/posts" element={<PostsList />} />
+          <Route path="/posts/:id" element={<PostDetail />} />
           <Route
             path="/nuevo"
             element={
@@ -32,4 +36,5 @@ export default function App() {
     </AuthProvider>
   );
 }
+
 

@@ -15,12 +15,12 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(
   (res) => res,
-  (error) => {
-    if (error.response?.status === 401) {
+  (err) => {
+    if (err.response?.status === 401) {
       localStorage.removeItem("token");
       window.location.href = "/login";
     }
-    return Promise.reject(error);
+    return Promise.reject(err);
   }
 );
 

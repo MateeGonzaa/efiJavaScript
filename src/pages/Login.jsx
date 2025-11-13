@@ -8,6 +8,7 @@ import { Password } from "primereact/password";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { showError, showSuccess } from "../components/ToastProvider";
+import "../styles/styles.css";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -18,17 +19,17 @@ export default function Login() {
     try {
       const res = await loginUser(data);
       login(res.access_token);
-      showSuccess("Inicio exitoso", "Bienvenido!");
+      showSuccess("Bienvenido", "Inicio de sesión correcto");
       navigate("/");
     } catch {
-      showError("Error", "Credenciales incorrectas");
+      showError("Error", "Credenciales inválidas");
     }
   };
 
   return (
-    <div className="flex justify-content-center align-items-center h-screen">
-      <Card title="Iniciar sesión" className="p-4 w-20rem">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column gap-3">
+    <div className="auth-container">
+      <Card title="Iniciar sesión" className="auth-card">
+        <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
           <span className="p-float-label">
             <InputText id="email" {...register("email")} />
             <label htmlFor="email">Email</label>
@@ -37,7 +38,7 @@ export default function Login() {
             <Password id="password" {...register("password")} feedback={false} />
             <label htmlFor="password">Contraseña</label>
           </span>
-          <Button label="Ingresar" icon="pi pi-sign-in" />
+          <Button label="Ingresar" className="p-button-rounded p-button-primary" />
         </form>
       </Card>
     </div>
