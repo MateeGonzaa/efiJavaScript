@@ -6,7 +6,7 @@ import { Password } from "primereact/password";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { showSuccess, showError } from "../components/ToastProvider";
-import "../styles/styles.css";
+import "../styles/theme.css";
 
 export default function Register() {
   const { register, handleSubmit, reset } = useForm();
