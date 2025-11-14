@@ -112,6 +112,15 @@ Una vez que ambos servidores estén activos, ya podés acceder a MyL para regist
 ---
 ---
 
+## Errores Comunes y Error Princiapl
+
+| Problema | Posible causa | Solución |
+|-----------|----------------|-----------|
+| `npm: command not found` | Node.js no está instalado correctamente | Reinstalá Node desde [nodejs.org](https://nodejs.org) |
+| Error de CORS | El backend no permite el origen del frontend | Verificá las configuraciones de CORS en Flask |
+| Página en blanco | Error en el código o en las rutas | Revisá la consola del navegador (`F12 > Console`) |
+| No Crea el post | Error 422 | No Encontrada |
+
 ### 👥 Integrantes del Equipo
 
 | Nombre Completo | Usuario de GitHub |
