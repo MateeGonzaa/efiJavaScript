@@ -16,7 +16,6 @@ export default function PostForm() {
     };
 
     try {
-      // 3. Enviamos los datos corregidos (dataToSend)
       await createPost(dataToSend);
       showSuccess("Post creado", "Tu publicación fue creada correctamente");
       reset();
@@ -42,7 +41,6 @@ export default function PostForm() {
             )}
           />
 
-          
           <Controller
             name="category_id" 
             control={control}
@@ -55,7 +53,6 @@ export default function PostForm() {
             )}
           />
 
-          
           <Controller
             name="contenido"
             control={control}

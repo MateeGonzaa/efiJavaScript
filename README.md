@@ -1,16 +1,44 @@
-# React + Vite
+# MyL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 👥 Integrantes del Equipo
 
-Currently, two official plugins are available:
+| Nombre Completo | Usuario de GitHub |
+| :--- | :--- |
+| Mateo Gonzalez | [@MateeGonzaa](https://github.com/MateeGonzaa) |
+| Lucas Aruza | [@Lucasaruza17](https://github.com/Lucasaruza17) |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌐 Repositorios del Proyecto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+El proyecto está dividido en un **Frontend** (JavaScript/React) y un **Backend** (API REST con Flask/Python).
 
-## Expanding the ESLint configuration
+| Componente | Descripción | Enlace al Repositorio |
+| :--- | :--- | :--- |
+| **Frontend** (Interfaz de Usuario) | Desarrollado con JavaScript (probablemente React o similar). | 🔗 [Repositorio Frontend (JS)](https://github.com/MateeGonzaa/efiJavaScript.git) |
+| **Backend** (API Flask) | Sistema de **autenticación, publicaciones y comentarios** gestionado por una **API REST** con **Flask**. | 🔗 [Repositorio Backend (Flask)](https://github.com/Lucasaruza17/efiPython2.git) |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Guía de Instalación y Ejecución
+
+### 🧩 1. Clonar los repositorios
+Clona tanto el **backend** (Flask) como el **frontend** (JavaScript):
+
+```bash
+# Clonar backend (API Flask)
+git clone [https://github.com/Lucasaruza17/efiPython2.git](https://github.com/Lucasaruza17/efiPython2.git)
+cd efiPython2
+
+# Clonar frontend (JavaScript)
+git clone [https://github.com/MateeGonzaa/efiJavaScript.git](https://github.com/MateeGonzaa/efiJavaScript.git)
+cd efiJavaScript
+
+python -m venv venv
+source venv/bin/activate  # En Linux/Mac
+venv\Scripts\activate     # En Windows
+
+pip install -r requirements.txt
+
+# Ejemplo, si no está en requirements.txt
+pip install flask-login
