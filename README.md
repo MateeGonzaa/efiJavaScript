@@ -33,25 +33,39 @@ El proyecto está dividido en un **Frontend** (JavaScript/React) y un **Backend*
 Clona tanto el **backend** (Flask) como el **frontend** (JavaScript):
 
 # Clonar backend (API Flask)
+
+```bash
 git clone [https://github.com/Lucasaruza17/efiPython2.git](https://github.com/Lucasaruza17/efiPython2.git)
 cd efiPython2
+```
 
 # Clonar frontend (JavaScript)
+
+```bash
 git clone [https://github.com/MateeGonzaa/efiJavaScript.git](https://github.com/MateeGonzaa/efiJavaScript.git)
 cd efiJavaScript
+```
 
 ### 2. Configurar el entorno de Backend (Flask)
 Crea y activa un entorno virtual (recomendado):
 
+```bash
 python -m venv venv
 source venv/bin/activate  # En Linux/Mac
 venv\Scripts\activate     # En Windows
+```
 
 # Instala las dependencias del backend:
-pip install -r requirements.txt
 
-#Si es necesario, instala dependencias específicas que puedan faltar:
+```bash
+pip install -r requirements.txt
+```
+
+Si es necesario, instala dependencias específicas que puedan faltar:
+
+```bash
 pip install flask-login
+```
 
 ### 3. Configurar la base de datos
 Inicia XAMPP u otro servicio y activa MySQL.
@@ -63,12 +77,17 @@ efiPythonMyL
 
 # Ejecuta las migraciones desde la carpeta del backend (efiPython2):
 
+```bash
 flask db migrate -m "creación de tablas iniciales"
 flask db upgrade
+```
 
 ### 4. Ejecutar el servidor Flask
 Desde la carpeta del backend (efiPython2):
+
+```bash
 flask run
+```
 
 Por defecto, el backend se iniciará en:
 
@@ -77,8 +96,10 @@ Por defecto, el backend se iniciará en:
 ### 5. Ejecutar el frontend (JavaScript)
 Desde la carpeta del frontend (efiJavaScript):
 
+```bash
 npm install
 npm run dev
+```
 
 O el comando de ejecución configurado para el proyecto (ej. npm start)
 Por defecto, la interfaz de usuario se abrirá en (el puerto puede variar, ej. 5173, 3000):
