@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { createPost } from "../api/posts";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
@@ -8,11 +8,24 @@ import { Card } from "primereact/card";
 import { showError, showSuccess } from "../components/ToastProvider";
 
 export default function PostForm() {
-  const { control, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
+  // AQUÍ ESTÁ EL CAMBIO:
+  // Mantenemos async/await y el try/catch,
+  // pero agregamos la lógica de conversión de tu snippet.
   const onSubmit = async (data) => {
+    
+    // 1. Preparamos los datos para enviar
+    const dataToSend = {
+      ...data,
+      // 2. Convertimos el campo 'categoria' a número
+      // (En tu form usas 'categoria', no 'category_id')
+      categoria: parseInt(data.categoria, 10),
+    };
+
     try {
-      await createPost(data);
+      // 3. Enviamos los datos corregidos (dataToSend)
+      await createPost(dataToSend);
       showSuccess("Post creado", "Tu publicación fue creada correctamente");
       reset();
     } catch {
@@ -24,67 +37,11 @@ export default function PostForm() {
     <div className="flex justify-content-center align-items-center h-screen">
       <Card title="Nuevo Post" className="p-4 w-30rem">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column gap-3">
-
-    {/*      
-    <Controller
-    name="subject" // 
-    control={control}
-    rules={{ required: "El asunto es requerido" }}
-    defaultValue=""
-    render={({ field, fieldState }) => (
-      <span className="p-float-label">
-        <InputText // 
-          id={field.name}
-          {...field}
-          className={fieldState.error ? "p-invalid" : ""}
-        />
-        <label htmlFor={field.name}>Asunto</label>
-      </span>
-    )}
-  />
-  */}
-  <Controller
-    name="titulo"
-    control={control}
-    defaultValue=""
-    render={({ field }) => (
-      <span className="p-float-label">
-        <InputText id={field.name} {...field} />
-        <label htmlFor={field.name}>Título</label>
-      </span>
-    )}
-  />
-
-  <Controller
-    name="categorias"
-    control={control}
-    defaultValue=""
-    render={({ field }) => (
-      <span className="p-float-label">
-        <InputText id={field.name} {...field} />
-        <label htmlFor={field.name}>Categorías</label>
-      </span>
-    )}
-  />
-
-  <Controller
-    name="contenido"
-    control={control}
-    defaultValue=""
-    render={({ field }) => (
-      <span className="p-float-label">
-        <InputTextarea
-          id={field.name}
-          {...field}
-          rows={5}
-          autoResize
-        />
-        <label htmlFor={field.name}>Contenido</label>
-      </span>
-    )}
-  />
-
-  <Button label="Publicar" icon="pi pi-send" type="submit" />
+          <InputText placeholder="Título" {...register("titulo")} />
+          {/* Este es el campo que estamos convirtiendo: */}
+          <InputText placeholder="Categoría" {...register("categoria")} />
+          <InputTextarea placeholder="Contenido" rows={5} {...register("contenido")} />
+          <Button label="Publicar" icon="pi pi-send" />
         </form>
       </Card>
     </div>
