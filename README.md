@@ -77,11 +77,10 @@ Por defecto, el backend se iniciará en:
 ### 5. Ejecutar el frontend (JavaScript)
 Desde la carpeta del frontend (efiJavaScript):
 
-Bash
-
 npm install
 npm run dev
-# O el comando de ejecución configurado para el proyecto (ej. npm start)
+
+O el comando de ejecución configurado para el proyecto (ej. npm start)
 Por defecto, la interfaz de usuario se abrirá en (el puerto puede variar, ej. 5173, 3000):
 
 http://localhost:5173
