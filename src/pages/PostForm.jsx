@@ -24,7 +24,8 @@ export default function PostForm() {
     <div className="flex justify-content-center align-items-center h-screen">
       <Card title="Nuevo Post" className="p-4 w-30rem">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column gap-3">
-          
+
+    {/*      
     <Controller
     name="subject" // 
     control={control}
@@ -41,6 +42,7 @@ export default function PostForm() {
       </span>
     )}
   />
+  */}
   <Controller
     name="titulo"
     control={control}
