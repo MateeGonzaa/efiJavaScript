@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/auth";
 import { AuthContext } from "../context/AuthContext";
@@ -11,7 +11,7 @@ import { showError, showSuccess } from "../components/ToastProvider";
 import "../styles/theme.css";
 
 export default function Login() {
-  const { register, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm();
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -30,15 +30,33 @@ export default function Login() {
     <div className="auth-container">
       <Card title="Iniciar sesión" className="auth-card">
         <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
-          <span className="p-float-label">
-            <InputText id="email" {...register("email")} />
-            <label htmlFor="email">Email</label>
-          </span>
-          <span className="p-float-label">
-            <Password id="password" {...register("password")} feedback={false} />
-            <label htmlFor="password">Contraseña</label>
-          </span>
-          <Button label="Ingresar" className="p-button-rounded p-button-primary" />
+  <Controller
+    name="email"
+    control={control}
+    rules={{ required: 'El email es requerido' }}
+    defaultValue=""
+    render={({ field }) => (
+      <span className="p-float-label">
+        <InputText id={field.name} {...field} />
+        <label htmlFor={field.name}>Email</label>
+      </span>
+    )}
+  />
+
+  <Controller
+    name="password"
+    control={control}
+    rules={{ required: 'La contraseña es requerida' }}
+    defaultValue=""
+    render={({ field }) => (
+      <span className="p-float-label">
+        <Password id={field.name} {...field} feedback={false} />
+        <label htmlFor={field.name}>Contraseña</label>
+      </span>
+    )}
+  />
+
+  <Button label="Ingresar" className="p-button-rounded p-button-primary" />
         </form>
       </Card>
     </div>

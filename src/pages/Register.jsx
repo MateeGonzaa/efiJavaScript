@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { registerUser } from "../api/auth";
 import { InputText } from "primereact/inputtext";
 import { Password } from "primereact/password";
@@ -9,7 +9,7 @@ import { showSuccess, showError } from "../components/ToastProvider";
 import "../styles/theme.css";
 
 export default function Register() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, control } = useForm();
 
   const onSubmit = async (data) => {
     try {
@@ -25,9 +25,22 @@ export default function Register() {
     <div className="auth-container">
       <Card title="Registro" className="auth-card">
         <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
-          <InputText placeholder="Nombre" {...register("name")} />
+          <InputText placeholder="Nombre de usuario" {...register("username")} />
           <InputText placeholder="Email" {...register("email")} />
-          <Password placeholder="Contraseña" {...register("password")} feedback={false} />
+
+          <Controller
+            name="password"
+            control={control}
+            rules={{ required: true }} 
+            render={({ field }) => (
+              <Password 
+                placeholder="Contraseña" 
+                {...field} 
+                feedback={false} 
+              />
+            )}
+          />
+          
           <Button label="Registrar" className="p-button-rounded p-button-primary" />
         </form>
       </Card>

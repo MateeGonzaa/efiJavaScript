@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { createPost } from "../api/posts";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
@@ -8,7 +8,7 @@ import { Card } from "primereact/card";
 import { showError, showSuccess } from "../components/ToastProvider";
 
 export default function PostForm() {
-  const { register, handleSubmit, reset } = useForm();
+  const { control, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
     try {
@@ -24,10 +24,65 @@ export default function PostForm() {
     <div className="flex justify-content-center align-items-center h-screen">
       <Card title="Nuevo Post" className="p-4 w-30rem">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-column gap-3">
-          <InputText placeholder="Título" {...register("titulo")} />
-          <InputText placeholder="Categoría" {...register("categoria")} />
-          <InputTextarea placeholder="Contenido" rows={5} {...register("contenido")} />
-          <Button label="Publicar" icon="pi pi-send" />
+          
+    <Controller
+    name="subject" // 
+    control={control}
+    rules={{ required: "El asunto es requerido" }}
+    defaultValue=""
+    render={({ field, fieldState }) => (
+      <span className="p-float-label">
+        <InputText // 
+          id={field.name}
+          {...field}
+          className={fieldState.error ? "p-invalid" : ""}
+        />
+        <label htmlFor={field.name}>Asunto</label>
+      </span>
+    )}
+  />
+  <Controller
+    name="titulo"
+    control={control}
+    defaultValue=""
+    render={({ field }) => (
+      <span className="p-float-label">
+        <InputText id={field.name} {...field} />
+        <label htmlFor={field.name}>Título</label>
+      </span>
+    )}
+  />
+
+  <Controller
+    name="categorias"
+    control={control}
+    defaultValue=""
+    render={({ field }) => (
+      <span className="p-float-label">
+        <InputText id={field.name} {...field} />
+        <label htmlFor={field.name}>Categorías</label>
+      </span>
+    )}
+  />
+
+  <Controller
+    name="contenido"
+    control={control}
+    defaultValue=""
+    render={({ field }) => (
+      <span className="p-float-label">
+        <InputTextarea
+          id={field.name}
+          {...field}
+          rows={5}
+          autoResize
+        />
+        <label htmlFor={field.name}>Contenido</label>
+      </span>
+    )}
+  />
+
+  <Button label="Publicar" icon="pi pi-send" type="submit" />
         </form>
       </Card>
     </div>
