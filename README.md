@@ -23,6 +23,9 @@ El proyecto está dividido en un **Frontend** (JavaScript/React) y un **Backend*
 - **React Router DOM**
 - **Context API** (manejo de sesión)
 - **localStorage**
+- [**Node.js**](https://nodejs.org/) (versión 18 o superior)
+- [**npm**](https://www.npmjs.com/) (se instala junto con Node.js)
+- [**Git**](https://git-scm.com/)
 
 ---
 
