@@ -76,7 +76,7 @@ Inicia XAMPP u otro servicio y activa MySQL.
 Ingresa a tu gestor de bases de datos (ej. http://localhost/phpmyadmin).
 
 Crea una base de datos llamada:
-efiPythonMyL
+efipythonMyL
 
 # Ejecuta las migraciones desde la carpeta del backend (efiPython2):
 
