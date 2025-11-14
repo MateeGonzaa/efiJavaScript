@@ -32,7 +32,6 @@ El proyecto está dividido en un **Frontend** (JavaScript/React) y un **Backend*
 ### 1. Clonar los repositorios
 Clona tanto el **backend** (Flask) como el **frontend** (JavaScript):
 
-```bash
 # Clonar backend (API Flask)
 git clone [https://github.com/Lucasaruza17/efiPython2.git](https://github.com/Lucasaruza17/efiPython2.git)
 cd efiPython2
@@ -41,7 +40,7 @@ cd efiPython2
 git clone [https://github.com/MateeGonzaa/efiJavaScript.git](https://github.com/MateeGonzaa/efiJavaScript.git)
 cd efiJavaScript
 
-### 🐍 2. Configurar el entorno de Backend (Flask)
+### 2. Configurar el entorno de Backend (Flask)
 Crea y activa un entorno virtual (recomendado):
 
 python -m venv venv
@@ -54,7 +53,7 @@ pip install -r requirements.txt
 #Si es necesario, instala dependencias específicas que puedan faltar:
 pip install flask-login
 
-#3. Configurar la base de datos
+### 3. Configurar la base de datos
 Inicia XAMPP u otro servicio y activa MySQL.
 
 Ingresa a tu gestor de bases de datos (ej. http://localhost/phpmyadmin).
@@ -67,7 +66,7 @@ efiPythonMyL
 flask db migrate -m "creación de tablas iniciales"
 flask db upgrade
 
-#4. Ejecutar el servidor Flask
+### 4. Ejecutar el servidor Flask
 Desde la carpeta del backend (efiPython2):
 flask run
 
@@ -75,7 +74,7 @@ Por defecto, el backend se iniciará en:
 
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-# 5. Ejecutar el frontend (JavaScript)
+### 5. Ejecutar el frontend (JavaScript)
 Desde la carpeta del frontend (efiJavaScript):
 
 Bash
@@ -92,7 +91,8 @@ Una vez que ambos servidores estén activos, ya podés acceder a MyL para regist
 
 ---
 ---
-## 👥 Integrantes del Equipo
+
+### 👥 Integrantes del Equipo
 
 | Nombre Completo | Usuario de GitHub |
 | :--- | :--- |
