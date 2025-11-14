@@ -115,7 +115,7 @@ Una vez que ambos servidores estén activos, ya podés acceder a MyL para regist
 ---
 ---
 
-## Errores Comunes y Error Princiapl
+## Errores Comunes y Error Principal
 
 | Problema | Posible causa | Solución |
 |-----------|----------------|-----------|
